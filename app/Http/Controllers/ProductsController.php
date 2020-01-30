@@ -11,6 +11,7 @@ use App\Category;
 use App\Product;
 use App\ProductsAttribute;
 use App\ProductsImage;
+use DB;
 
 class ProductsController extends Controller
 {
@@ -58,8 +59,15 @@ class ProductsController extends Controller
     				// Store image name in products table
     				$product->image = $filename;
     			}
-    		}
+            }
+            
+            if(empty($data['status'])){
+                $status = 0;
+            } else {
+                $status = 1;
+            }
 
+            $product->status = $status;
     		$product->save();
     		/*return redirect()->back()->with('flash_message_success','Product has been added successfully!');*/
             return redirect('/admin/view-products')->with('flash_message_success','Product has been added successfully!');
@@ -109,7 +117,13 @@ class ProductsController extends Controller
                 $data['care'] = '';
             }
 
-            Product::where(['id' => $id])->update(['category_id' => $data['category_id'], 'product_name' => $data['product_name'], 'product_code' => $data['product_code'], 'product_color' => $data['product_color'], 'description' => $data['description'], 'care' => $data['care'], 'price' => $data['price'], 'image' => $filename]);
+            if(empty($data['status'])){
+                $status = 0;
+            } else {
+                $status = 1;
+            }
+
+            Product::where(['id' => $id])->update(['category_id' => $data['category_id'], 'product_name' => $data['product_name'], 'product_code' => $data['product_code'], 'product_color' => $data['product_color'], 'description' => $data['description'], 'care' => $data['care'], 'price' => $data['price'], 'image' => $filename, 'status'=>$status]);
             return redirect()->back()->with('flash_message_success', 'Product has been updated Successfully!');
         }
 
@@ -254,6 +268,19 @@ class ProductsController extends Controller
         return view('admin.products.add_attributes')->with(compact('productDetails'));
     }
 
+    public function editAttributes(Request $request, $id=null){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            /*echo "<pre>"; print_r($data); die;*/
+            foreach($data['idAttr'] as $key=> $attr){
+                if(!empty($attr)){
+                    ProductsAttribute::where(['id' => $data['idAttr'][$key]])->update(['price' => $data['price'][$key], 'stock' => $data['stock'][$key]]);
+                }
+            }
+            return redirect()->back()->with('flash_message_success', 'Product Attributes has been updated successfully');
+        }
+    }
+
     public function addImages(Request $request, $id=null){
         $productDetails = Product::with('attributes')->where(['id' => $id])->first();
 
@@ -359,5 +386,73 @@ class ProductsController extends Controller
         echo $proAttr->price; 
         echo "#";
         echo $proAttr->stock; 
+    }
+
+    public function addtocart(Request $request){
+
+        Session::forget('CouponAmount');
+        Session::forget('CouponCode');
+
+        $data = $request->all();
+        /*echo "<pre>"; print_r($data); die;*/
+        if(empty($data['user_email'])){
+            $data['user_email'] = '';    
+        }
+
+        $session_id = Session::get('session_id');
+        if(!isset($session_id)){
+            $session_id = str_random(40);
+            Session::put('session_id',$session_id);
+        }
+
+        $countProducts = DB::table('cart')->where(['product_id' => $data['product_id'],'product_color' => $data['product_color'],'size' => $data['size'],'session_id' => $session_id])->count();
+        if($countProducts>0){
+            return redirect()->back()->with('flash_message_error','Product already exist in Cart!');
+        }
+
+        $sizeIDArr = explode('-',$data['size']);
+        $product_size = $sizeIDArr[1];
+
+        $getSKU = ProductsAttribute::select('sku')->where(['product_id' => $data['product_id'], 'size' => $product_size])->first();
+                
+        DB::table('cart')
+        ->insert(['product_id' => $data['product_id'],'product_name' => $data['product_name'],
+            'product_code' => $getSKU['sku'],'product_color' => $data['product_color'],
+            'price' => $data['price'],'size' => $product_size,'quantity' => $data['quantity'],'user_email' => $data['user_email'],'session_id' => $session_id]);
+
+        return redirect('cart')->with('flash_message_success','Product has been added in Cart!');
+
+    }
+
+    public function cart(){       
+        $session_id = Session::get('session_id');
+        $userCart = DB::table('cart')->where(['session_id' => $session_id])->get();
+        foreach($userCart as $key => $product){
+            $productDetails = Product::where('id',$product->product_id)->first();
+            $userCart[$key]->image = $productDetails->image;
+        }
+        /*echo "<pre>"; print_r($userCart); die;*/
+        return view('products.cart')->with(compact('userCart'));
+    }
+
+    public function deleteCartProduct($id=null){
+        Session::forget('CouponAmount');
+        Session::forget('CouponCode');
+        DB::table('cart')->where('id',$id)->delete();
+        return redirect('cart')->with('flash_message_success','Product has been deleted in Cart!');
+    }
+
+    public function updateCartQuantity($id=null,$quantity=null){
+        Session::forget('CouponAmount');
+        Session::forget('CouponCode');
+        $getProductSKU = DB::table('cart')->select('product_code','quantity')->where('id',$id)->first();
+        $getProductStock = ProductsAttribute::where('sku',$getProductSKU->product_code)->first();
+        $updated_quantity = $getProductSKU->quantity+$quantity;
+        if($getProductStock->stock>=$updated_quantity){
+            DB::table('cart')->where('id',$id)->increment('quantity',$quantity); 
+            return redirect('cart')->with('flash_message_success','Product Quantity has been updated in Cart!');   
+        }else{
+            return redirect('cart')->with('flash_message_error','Required Product Quantity is not available!');    
+        }
     }
 }
