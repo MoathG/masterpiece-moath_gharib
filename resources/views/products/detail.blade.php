@@ -66,7 +66,7 @@
 											@if($total_stock>0)
 												<button type="submit" class="btn btn-fefault cart" id="cartButton">
 													<i class="fa fa-shopping-cart"></i>
-													Add to cart
+													Add to card
 												</button>
 											@endif	
 										</span>
@@ -128,7 +128,7 @@
 													<img style="width:200px;" src="{{ asset('images/backend_images/products/small/'.$item->image) }}" alt="" />
 													<h2>INR {{ $item->price }}</h2>
 													<p>{{ $item->product_name }}</p>
-													<a href="{{ url('/product/'.$item->id) }}"><button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button></a>
+													<a href="{{ url('/product/'.$item->id) }}"><button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to card</button></a>
 												</div>
 											</div>
 										</div>
