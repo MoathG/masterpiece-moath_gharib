@@ -17,11 +17,11 @@
 							<div class="item active">
 								<div class="col-sm-6">
 									<h1>Topaz</h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<p>Topaz is a silicate mineral of aluminium and fluorine Topaz crystallizes in the orthorhombic system, and its crystals are mostly prismatic terminated by pyramidal and other faces. It is one of the hardest naturally occurring minerals and is the hardest of any silicate mineral. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
+									<img src="{{ asset('images/frontend_images/home/topaz_stone.png') }}" class="girl img-responsive" alt="" />
 									<img src="images/home/pricing.png"  class="pricing" alt="" />
 								</div>
 							</div>
@@ -74,30 +74,25 @@
 							<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{ asset('/images/backend_images/products/small/'.$pro->image) }}" alt="" />
-										<h2>$ {{ $pro->price }}</h2>
+										<h2>JD {{ $pro->price }}</h2>
 										<p>{{ $pro->product_name }}</p>
 										<a href="{{ url('/product/'.$pro->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>$ {{ $pro->price }}</h2>
+											<h2>JD {{ $pro->price }}</h2>
 											<p>{{ $pro->product_name }}</p>
 											<a href="{{ url('/product/'.$pro->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 									</div>
 							</div>
-							<!-- <div class="choose">
-								<ul class="nav nav-pills nav-justified">
-									<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-									<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-								</ul>
-							</div> -->
 						</div>
 					</div>
 					@endforeach
 					
 					
-				</div><!--features_items-->
+				</div>
+				<!--features_items-->
 				
 			</div>
 		</div>

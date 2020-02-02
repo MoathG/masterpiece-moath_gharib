@@ -415,10 +415,7 @@ class ProductsController extends Controller
 
         $getSKU = ProductsAttribute::select('sku')->where(['product_id' => $data['product_id'], 'size' => $product_size])->first();
                 
-        DB::table('cart')
-        ->insert(['product_id' => $data['product_id'],'product_name' => $data['product_name'],
-            'product_code' => $getSKU['sku'],'product_color' => $data['product_color'],
-            'price' => $data['price'],'size' => $product_size,'quantity' => $data['quantity'],'user_email' => $data['user_email'],'session_id' => $session_id]);
+        DB::table('cart')->insert(['product_id' => $data['product_id'],'product_name' => $data['product_name'], 'product_code' => $getSKU['sku'],'product_color' => $data['product_color'], 'price' => $data['price'],'size' => $product_size,'quantity' => $data['quantity'],'user_email' => $data['user_email'],'session_id' => $session_id]);
 
         return redirect('cart')->with('flash_message_success','Product has been added in Cart!');
 

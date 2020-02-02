@@ -29,13 +29,13 @@
 								<div class="single-products">
 										<div class="productinfo text-center">
 											<img src="{{ asset('/images/backend_images/products/small/'.$pro->image) }}" alt="" />
-											<h2>$ {{ $pro->price }}</h2>
+											<h2>JD {{ $pro->price }}</h2>
 											<p>{{ $pro->product_name }}</p>
 											<a href="{{ url('/product/'.$pro->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
-												<h2>$ {{ $pro->price }}</h2>
+												<h2>JD {{ $pro->price }}</h2>
 												<p>{{ $pro->product_name }}</p>
 												<a href="{{ url('/product/'.$pro->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
@@ -65,7 +65,7 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
+													<h2>JD 56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
@@ -78,7 +78,7 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
+													<h2>JD 56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
@@ -91,7 +91,7 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
+													<h2>JD 56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
@@ -106,7 +106,7 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
+													<h2>JD 56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
@@ -119,7 +119,7 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
+													<h2>JD 56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
@@ -132,7 +132,7 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
+													<h2>JD 56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>

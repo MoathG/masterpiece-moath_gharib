@@ -22,7 +22,7 @@ $mainCategories =  Controller::mainCategories();
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img style="width:80px" src="{{ asset('images/frontend_images/home/topaz.jpeg') }}" alt="" /></a>
+							<a href="{{ asset('/') }}"><img style="width:80px" src="{{ asset('images/frontend_images/home/topaz.jpeg') }}" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -62,46 +62,4 @@ $mainCategories =  Controller::mainCategories();
 				</div>
 			</div>
 		</div><!--/header-middle-->
-	
-		<div class="header-bottom"><!--header-bottom-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Shop</a>
-                                    <ul role="menu" class="sub-menu">
-                                    	@foreach($mainCategories as $cat)
-                                        	<li><a href="{{ asset('products/'.$cat->url) }}">{{ $cat->name }}</a></li>
-										@endforeach
-                                    </ul>
-                                </li> 
-								<li class="dropdown"><a href="#">Blog</a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li> 
-								<li><a href="404.html">404</a></li>
-								<li><a href="contact-us.html">Contact</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-bottom-->
 	</header><!--/header-->

@@ -46,7 +46,7 @@
 									<p>{{ $cart->product_code }} | {{ $cart->size }}</p>
 								</td>
 								<td class="cart_price">
-									<p>INR {{ $cart->price }}</p>
+									<p>JD {{ $cart->price }}</p>
 								</td>
 								<td class="cart_quantity">
 									<div class="cart_quantity_button">
@@ -58,7 +58,7 @@
 									</div>
 								</td>
 								<td class="cart_total">
-									<p class="cart_total_price">INR {{ $cart->price*$cart->quantity }}</p>
+									<p class="cart_total_price">JD {{ $cart->price*$cart->quantity }}</p>
 								</td>
 								<td class="cart_delete">
 									<a class="cart_quantity_delete" href="{{ url('/cart/delete-product/'.$cart->id) }}"><i class="fa fa-times"></i></a>
@@ -97,11 +97,11 @@
 					<div class="total_area">
 						<ul>
 							<!-- @if(!empty(Session::get('CouponAmount')))
-								<li>Sub Total <span>INR <?php echo $total_amount; ?></span></li>
-								<li>Coupon Discount <span>INR <?php echo Session::get('CouponAmount'); ?></span></li>
-								<li>Grand Total <span>INR <?php echo $total_amount - Session::get('CouponAmount'); ?></span></li>
+								<li>Sub Total <span>JD <?php echo $total_amount; ?></span></li>
+								<li>Coupon Discount <span>JD <?php echo Session::get('CouponAmount'); ?></span></li>
+								<li>Grand Total <span>JD <?php echo $total_amount - Session::get('CouponAmount'); ?></span></li>
 							@else -->
-								<li>Grand Total <span>INR <?php echo $total_amount; ?></span></li>
+								<li>Grand Total <span>JD <?php echo $total_amount; ?></span></li>
 							@endif
 						</ul>
 							<a class="btn btn-default update" href="">Update</a>

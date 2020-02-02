@@ -42,10 +42,10 @@ $("#selSize").change(function(){
 	$.ajax({
 		type:'get',
 		url:'/get-product-price',
-		data:{idsize:idsize},
+		data:{idSize:idSize},
 		success:function(resp){
 			var arr = resp.split('#');
-			$("#getPrice").html("INR "+arr[0]);
+			$("#getPrice").html("JD "+arr[0]);
 			$("#price").val(arr[0]);
 			if(arr[1]==0){
 				$("#cartButton").hide();

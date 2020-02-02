@@ -45,7 +45,7 @@
 								<input type="hidden" name="product_name" value="{{ $productDetails->product_name }}">
 								<input type="hidden" name="product_code" value="{{ $productDetails->product_code }}">
 								<input type="hidden" name="product_color" value="{{ $productDetails->product_color }}">
-								<input type="hidden" name="product_price" id="price" value="{{ $productDetails->price }}">
+								<input type="hidden" name="price" id="price" value="{{ $productDetails->price }}">
 								<div class="product-information"><!--/product-information-->
 										<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 										<h2>{{ $productDetails->product_name }}</h2>
@@ -126,7 +126,7 @@
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img style="width:200px;" src="{{ asset('images/backend_images/products/small/'.$item->image) }}" alt="" />
-													<h2>INR {{ $item->price }}</h2>
+													<h2>JD {{ $item->price }}</h2>
 													<p>{{ $item->product_name }}</p>
 													<a href="{{ url('/product/'.$item->id) }}"><button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to card</button></a>
 												</div>
