@@ -9,7 +9,7 @@ $mainCategories =  Controller::mainCategories();
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href="#"> +962 7777 56328</a></li>
-								<li><a href="#"> topaz@topaz.com</a></li>
+								<li><a href="#"> info@topaz.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -30,10 +30,6 @@ $mainCategories =  Controller::mainCategories();
 									Jordan
 									<span class="caret"></span>
 								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">USA</a></li>
-									<!-- <li><a href="#">UK</a></li> -->
-								</ul>
 							</div>
 							
 							<div class="btn-group">
@@ -41,10 +37,6 @@ $mainCategories =  Controller::mainCategories();
 									Jordanian Dinar
 									<span class="caret"></span>
 								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">US Dollar</a></li>
-									<li><a href="#">JD</a></li>
-								</ul>
 							</div>
 						</div>
 					</div>
@@ -54,7 +46,7 @@ $mainCategories =  Controller::mainCategories();
 								<li><a href="#"> Account</a></li>
 								<!-- <li><a href="#"> Wishlist</a></li> -->
 								<!-- <li><a href="checkout.html"> Checkout</a></li> -->
-								<li><a href="cart.html"> Card</a></li>
+								<li><a href="{{ asset('/cart') }}"> Card</a></li>
 								<li><a href="login.html"> Login</a></li>
 							</ul>
 						</div>

@@ -83,7 +83,7 @@ class ProductsController extends Controller
     		}
     	}
     	return view('admin.products.add_product')->with(compact('categories_dropdown'));
-    }
+    } //done
 
     public function editProduct(Request $request, $id=null){
 
@@ -152,7 +152,7 @@ class ProductsController extends Controller
         }
 
         return view('admin.products.edit_product')->with(compact('productDetails', 'categories_dropdown'));
-    }
+    } //done
 
     public function deleteProductImage($id=null){
 
@@ -225,12 +225,12 @@ class ProductsController extends Controller
         }
         //echo "<pre>"; print_r($products); die;
         return view('admin.products.view_products')->with(compact('products'));
-    }
+    } //done
 
     public function deleteProduct($id = null){
         Product::where(['id' => $id])->delete();
         return redirect()->back()->with('flash_message_success', 'Product has been deleted successfully!');
-    }
+    } //done
 
     public function addAttributes(Request $request, $id = null){
         $productDetails = Product::with('attributes')->where(['id' => $id])->first();
@@ -359,7 +359,7 @@ class ProductsController extends Controller
 
         // Get Product Details
         $productDetails = Product::with('attributes')->where('id',$id)->first();
-        $relatedProducts = Product::where('id','!=',$id)->where(['category_id' => $productDetails->category_id])->get();
+        // $relatedProducts = Product::where('id','!=',$id)->where(['category_id' => $productDetails->category_id])->get();
 
         /*foreach($relatedProducts->chunk(3) as $chunk){
             foreach($chunk as $item){
@@ -389,9 +389,6 @@ class ProductsController extends Controller
     }
 
     public function addtocart(Request $request){
-
-        Session::forget('CouponAmount');
-        Session::forget('CouponCode');
 
         $data = $request->all();
         /*echo "<pre>"; print_r($data); die;*/
@@ -433,15 +430,11 @@ class ProductsController extends Controller
     }
 
     public function deleteCartProduct($id=null){
-        Session::forget('CouponAmount');
-        Session::forget('CouponCode');
         DB::table('cart')->where('id',$id)->delete();
         return redirect('cart')->with('flash_message_success','Product has been deleted in Cart!');
     }
 
     public function updateCartQuantity($id=null,$quantity=null){
-        Session::forget('CouponAmount');
-        Session::forget('CouponCode');
         $getProductSKU = DB::table('cart')->select('product_code','quantity')->where('id',$id)->first();
         $getProductStock = ProductsAttribute::where('sku',$getProductSKU->product_code)->first();
         $updated_quantity = $getProductSKU->quantity+$quantity;
