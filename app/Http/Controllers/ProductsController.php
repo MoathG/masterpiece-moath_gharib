@@ -19,7 +19,6 @@ class ProductsController extends Controller
 
     	if($request->isMethod('post')){
     		$data = $request->all();
-    		//echo "<pre>"; print_r($data); die;
     		if(empty($data['category_id'])){
     			return redirect()->back()->with('flash_message_error','Under Category is missing!');	
     		}
@@ -44,7 +43,8 @@ class ProductsController extends Controller
 
     		// Upload Image
     		if($request->hasFile('image')){
-    			$image_tmp = Input::file('image');
+                $image_tmp = Input::file('image');
+                
     			if($image_tmp->isValid()){
     				$extension = $image_tmp->getClientOriginalExtension();
     				$filename = rand(111,99999).'.'.$extension;
@@ -83,7 +83,7 @@ class ProductsController extends Controller
     		}
     	}
     	return view('admin.products.add_product')->with(compact('categories_dropdown'));
-    } //done
+    }
 
     public function editProduct(Request $request, $id=null){
 
@@ -152,7 +152,7 @@ class ProductsController extends Controller
         }
 
         return view('admin.products.edit_product')->with(compact('productDetails', 'categories_dropdown'));
-    } //done
+    }
 
     public function deleteProductImage($id=null){
 
@@ -218,19 +218,17 @@ class ProductsController extends Controller
 
     public function viewProducts(){
         $products = Product::orderby('id', 'DESC')->get();
-        $products = json_decode(json_encode($products));
         foreach($products as $key => $val){
             $category_name = Category::where(['id'=>$val->category_id])->first();
             $products[$key]->category_name = $category_name->name;
         }
-        //echo "<pre>"; print_r($products); die;
         return view('admin.products.view_products')->with(compact('products'));
-    } //done
+    }
 
     public function deleteProduct($id = null){
         Product::where(['id' => $id])->delete();
         return redirect()->back()->with('flash_message_success', 'Product has been deleted successfully!');
-    } //done
+    }
 
     public function addAttributes(Request $request, $id = null){
         $productDetails = Product::with('attributes')->where(['id' => $id])->first();
@@ -376,7 +374,7 @@ class ProductsController extends Controller
 
         $total_stock = ProductsAttribute::where('product_id',$id)->sum('stock');
 
-        return view('products.detail')->with(compact('productDetails','categories','productAltImages','total_stock','relatedProducts'));
+        return view('products.detail')->with(compact('productDetails','categories','productAltImages','total_stock'));
     }
 
     public function getProductPrice(Request $request){

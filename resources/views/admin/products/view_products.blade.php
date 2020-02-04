@@ -59,8 +59,8 @@
                   <td class="center">
                     <a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini" title="View Product">View</a> 
                     <a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini" title="Edit Product">Edit</a> 
-                    <a href="{{ url('/admin/add-attributes/'.$product->id) }}" class="btn btn-success btn-mini" title="Add Attributes">Add</a> 
-                    <a href="{{ url('/admin/add-images/'.$product->id) }}" class="btn btn-info btn-mini" title="Add Images">Add</a> 
+                    <a href="{{ url('/admin/add-attributes/'.$product->id) }}" class="btn btn-success btn-mini" title="Add Attributes">Add Attributes</a> 
+                    <a href="{{ url('/admin/add-images/'.$product->id) }}" class="btn btn-info btn-mini" title="Add Images">Add Images</a> 
                     <a id="delProduct" href="{{ url('/admin/delete-product/'.$product->id) }}" class="btn btn-danger btn-mini" title="Delete Product">Delete</a>
                   </td>
                 </tr>
